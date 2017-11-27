@@ -9,6 +9,7 @@ var engine = require('ejs-locals');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var kids = require('./routes/kids');
+var classes = require('./routes/classes');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.engine('ejs', engine);
 app.use('/', index);
 app.use('/users', users);
 app.use('/kids', kids);
+app.use('/classes', classes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
