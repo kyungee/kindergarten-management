@@ -1,11 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-var i=0;
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('kids', { title: 'Express' , var_i: i});
+  res.render('kids', { title: 'Express'});
+});
+
+router.get('/detail', function(req, res, next) {
+  res.render('kids_detail', {});
 });
 
 module.exports = router;
