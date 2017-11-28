@@ -11,6 +11,7 @@ var users = require('./routes/users');
 var kids = require('./routes/kids');
 var classes = require('./routes/classes');
 var health = require('./routes/health');
+var stats = require('./routes/stats');
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.use('/users', users);
 app.use('/kids', kids);
 app.use('/classes', classes);
 app.use('/health', health);
+app.use('/stats', stats);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
