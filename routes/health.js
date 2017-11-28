@@ -6,6 +6,10 @@ router.get('/', function(req, res, next) {
   res.render('health', { title: 'Express'});
 });
 
+router.get('/detail', function(req, res, next) {
+  res.render('health_detail', { title: 'Express'});
+});
+
 router.get('/allergy', function(req, res, next) {
   res.render('allergy', { title: 'Express'});
 });
