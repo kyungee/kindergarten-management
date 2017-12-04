@@ -1,0 +1,84 @@
+
+<%- layout('base') %>
+
+
+<!-- Begin page heading -->
+<h1 class="page-heading">Login <small> 로그인</small></h1>
+<!-- End page heading -->
+
+
+<div class="the-box">
+  <legend>Sign In</legend>
+  <form id="FormExample1" method="post" class="form-horizontal" action="target.php"
+            data-bv-message="This value is not valid"
+            data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+            data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+            data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">ID</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" name="firstName" placeholder="User ID" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Password</label>
+            <div class="col-lg-4">
+              <input type="password" class="form-control" name="password" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Username</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" name="username" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Class</label>
+            <div class="col-lg-4">
+              <select class="form-control" name="country">
+                <option value="">-- 담당 반 선택 --</option>
+                <option value="1">빨강반</option>
+                <option value="2">노랑반</option>
+                <option value="3">초록반</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Birthday</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" name="birthday" data-bv-date="false" data-bv-date-format="YYYY/MM/DD" /> (YYYY/MM/DD)
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-3 control-label">H.P</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" name="phonenum" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Email</label>
+            <div class="col-lg-4">
+              <input class="form-control" name="email" type="email" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Address</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" name="address" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-lg-9 col-lg-offset-3">
+              <button type="submit" class="btn btn-primary">Sign in</button>
+            </div>
+          </div>
+        </form>
+</div><!-- /.the-box -->
