@@ -175,4 +175,20 @@ router.post('/edit/:idx', upload.single('photo'), function(req, res, next) {
   })
 });
 
+// GET : KIDS DELETE PAGE
+router.get('/delete/:idx', function(req, res, next) {
+  var idx = req.params.idx;
+
+  var stmt = 'DELETE FROM KINDERGARTENER WHERE idx="'+idx+'"';
+  connection.query(stmt, function (err, rows) {
+    console.log("rows : " + JSON.stringify(rows));
+    if (err){
+      console.error(err);
+      throw err;
+    } else{
+      res.redirect('/kids');
+    }
+  })
+});
+
 module.exports = router;
