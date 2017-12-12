@@ -1,0 +1,96 @@
+
+<%- layout('base') %>
+
+<!-- Begin page heading -->
+<h1 class="page-heading">유치원생 관리 프로그램 <small>Database 디빙디밍조</small></h1>
+<!-- End page heading -->
+
+<!-- Begin breadcrumb -->
+<ol class="breadcrumb default square rsaquo sm">
+  <li><a href="/"><i class="fa fa-home"></i></a></li>
+  <li><a href="/kids">유치원생 관리</a></li>
+  <li class="active">유치원생 상세보기</li>
+</ol>
+<!-- End breadcrumb -->
+
+<div class="the-box no-border property-list">
+  <div class="media">
+    <br/><br/>
+    <form id="AddKindergardenerForm" method="post" class="form-horizontal" action="/login"
+              data-bv-message="This value is not valid"
+              data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+              data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+              data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Class</label>
+                <div class="col-lg-4">
+                  <select class="form-control" name="class">
+                    <option value="">-- 담당 반 선택 --</option>
+                    <option value="1">병아리반</option>
+                    <option value="2">코끼리반</option>
+                    <option value="3">팬더반</option>
+                    <option value="4">펭귄반</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Name</label>
+                <div class="col-lg-4">
+                  <input type="text" class="form-control" name="name" placeholder="원생이름" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Gender</label>
+                <div class="col-lg-4">
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="gender" value="0" /> Male
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="gender" value="1" /> Female
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Birthday</label>
+                <div class="col-lg-4">
+                  <input type="text" class="form-control datepicker" data-date-format="yy-mm-dd" placeholder="yy-mm-dd">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Address</label>
+                <div class="col-lg-4">
+                  <input type="text" class="form-control" name="address" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">H.P</label>
+                <div class="col-lg-4">
+                  <input type="text" class="form-control" name="phonenum" />
+                </div>
+              </div>
+
+              <div class="form-group">
+              <label class="col-lg-3 control-label">Photo</label>
+                <div class="col-lg-4">
+                  <input class="note-image-input" type="file" name="photo" accept="image/*">
+                </div><!-- /.input-group -->
+              </div><!-- /.form-group -->
+
+            <div class="form-group">
+              <div class="col-lg-9 col-lg-offset-3">
+                <button type="submit" class="btn btn-primary">ADD</button>
+              </div>
+            </div>
+          </form>
+  </div><!-- /.media -->
+</div><!-- /.the-box no-border -->
