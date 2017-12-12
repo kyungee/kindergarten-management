@@ -16,7 +16,8 @@
 <div class="the-box no-border property-list">
   <div class="media">
     <br/><br/>
-    <form id="AddKindergardenerForm" method="post" class="form-horizontal" action="/login"
+    <form id="AddKindergardenerForm" method="post" class="form-horizontal" action="/kids/add"
+              enctype="multipart/form-data"
               data-bv-message="This value is not valid"
               data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
               data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
@@ -61,7 +62,7 @@
               <div class="form-group">
                 <label class="col-lg-3 control-label">Birthday</label>
                 <div class="col-lg-4">
-                  <input type="text" class="form-control datepicker" data-date-format="yy-mm-dd" placeholder="yy-mm-dd">
+                  <input type="text" name="birthday" class="form-control datepicker" data-date-format="yy-mm-dd" placeholder="yy-mm-dd">
                 </div>
               </div>
 

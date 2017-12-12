@@ -56,7 +56,6 @@ router.get('/register', function(req, res, next) {
 
 // POST : REGISTER PAGE
 router.post('/register', upload.single('photo'), function(req, res, next) {
-  console.log(req.file);
   var user = {
     'id': req.body.id,
     'pw': req.body.pw,
