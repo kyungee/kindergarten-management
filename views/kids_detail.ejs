@@ -22,11 +22,12 @@
       <h4 class="media-heading">
         <strong>병아리반</strong> <small class="pull-right">OOO선생님</small></h4><br/>
       <p class="hidden-xs">
-        이름 : 김경이</br>
-        생년월일 : 961018</br>
-        성별 : 여</br>
-        주소 : 경기도 수원시 영통구</br>
-        보호자 연락처 : 010-4159-7210
+        이름 : <%= kid.name %></br>
+        생년월일 : <%= kid.birth_date %></br>
+        성별 : <% if(kid.gender==0){ %> 남자
+        <% } else { %> 여자 <% } %></br>
+        주소 : <%= kid.address %></br>
+        보호자 연락처 : <%= kid.phone_num %>
       </p>
       <span class="small text-muted">
         <a href="/kids"><i class="fa fa-home">&nbsp;목록으로</i></a>

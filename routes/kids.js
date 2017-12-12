@@ -30,16 +30,25 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 
 
-/* GET home page. */
+// GET : KIDS PAGE
 router.get('/', function(req, res, next) {
   var sendData = {}
-
   if(req.session)
     sendData.mem_name = req.session.name;
   else
     sendData.mem_name = null;
 
-  res.render('kids', sendData);
+  var stmt = 'SELECT * FROM KINDERGARTENER';
+  connection.query(stmt, function (err, rows) {
+    console.log("rows : " + JSON.stringify(rows));
+    if (err){
+      console.error(err);
+      throw err;
+    } else{
+      sendData.kids = rows;
+      res.render('kids', sendData);
+    }
+  })
 });
 
 router.get('/detail', function(req, res, next) {
@@ -51,6 +60,28 @@ router.get('/detail', function(req, res, next) {
     sendData.mem_name = null;
 
   res.render('kids_detail', sendData);
+});
+
+router.get('/detail/:idx', function(req, res, next) {
+  var sendData = {}
+  if(req.session)
+    sendData.mem_name = req.session.name;
+  else
+    sendData.mem_name = null;
+
+  var idx = req.params.idx;
+
+  var stmt = 'SELECT * FROM KINDERGARTENER WHERE idx="'+idx+'"';
+  connection.query(stmt, function (err, rows) {
+    console.log("rows : " + JSON.stringify(rows));
+    if (err){
+      console.error(err);
+      throw err;
+    } else{
+      sendData.kid = rows[0];
+      res.render('kids_detail', sendData);
+    }
+  })
 });
 
 router.get('/add', function(req, res, next) {
@@ -66,7 +97,6 @@ router.get('/add', function(req, res, next) {
 
 // POST : KIDS ADD PAGE
 router.post('/add', upload.single('photo'), function(req, res, next) {
-  console.log(req.file);
   var data = {
     'class': req.body.class,
     'name': req.body.name,
@@ -76,14 +106,13 @@ router.post('/add', upload.single('photo'), function(req, res, next) {
     'phone_num': req.body.phonenum,
     'photo': req.file.filename
   };
-  console.log("#$$#$@$#@$"+data);
+
   var stmt = 'INSERT into KINDERGARTENER set ?';
   connection.query(stmt, data, function (err, result) {
     if (err){
       console.error(err);
       throw err;
     } else{
-      console.log('bbbbb');
       res.redirect('/kids');
     }
   })
