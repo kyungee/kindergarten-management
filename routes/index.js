@@ -31,7 +31,14 @@ router.get('/', function(req, res, next) {
 
 // GET : REGISTER PAGE
 router.get('/register', function(req, res, next) {
-  res.render('register');
+  var sendData = {}
+
+  if(req.session)
+    sendData.mem_name = req.session.name;
+  else
+    sendData.mem_name = null;
+
+  res.render('register', sendData);
 });
 
 // POST : REGISTER PAGE
