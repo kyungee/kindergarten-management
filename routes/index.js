@@ -2,6 +2,7 @@
 var express = require('express');
 var mysql = require('mysql');
 var session = require('express-session');
+var multer = require('multer');
 
 var mysql_dbc = require('../config/db_info.js');
 var connection = mysql.createConnection(mysql_dbc);
@@ -15,6 +16,18 @@ connection.connect(function(err) {
         throw err;
     }
 });
+
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, new Date().valueOf()+"-"+file.originalname)
+  }
+})
+
+var upload = multer({ storage: storage })
 
 
 /* GET home page. */
@@ -42,15 +55,17 @@ router.get('/register', function(req, res, next) {
 });
 
 // POST : REGISTER PAGE
-router.post('/register', function(req, res, next) {
+router.post('/register', upload.single('photo'), function(req, res, next) {
+  console.log(req.file);
   var user = {
-    'user_id': req.body.userid,
+    'id': req.body.id,
     'pw': req.body.pw,
-    'name': req.body.username,
+    'name': req.body.name,
     'type': req.body.class,
     'phone_num': req.body.phonenum,
     'email': req.body.email,
-    'address': req.body.address
+    'address': req.body.address,
+    'photo': req.file.filename
   };
 
   var stmt = 'INSERT into USER set ?';
@@ -59,7 +74,7 @@ router.post('/register', function(req, res, next) {
       console.error(err);
       throw err;
     } else{
-      res.render('login');
+      res.redirect('/login');
     }
   })
 });
@@ -79,18 +94,18 @@ router.get('/login', function(req, res, next) {
 // POST : LOGIN PAGE
 router.post('/login', function(req, res, next) {
   var user = {
-    'userid': req.body.userid,
+    'id': req.body.id,
     'pw': req.body.pw
   };
 
-  var stmt = 'SELECT * FROM USER WHERE user_id="'+user.userid+'" and pw="'+user.pw+'"';
+  var stmt = 'SELECT * FROM USER WHERE id="'+user.id+'" and pw="'+user.pw+'"';
   connection.query(stmt, function (err, rows) {
     console.log("rows : " + JSON.stringify(rows));
     if (err){
       console.error(err);
       throw err;
     } else{
-      req.session.user_id = rows[0]['user_id'];
+      req.session.id = rows[0]['id'];
       req.session.name = rows[0]['name'];
       res.redirect('/');
     }

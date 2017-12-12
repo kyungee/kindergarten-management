@@ -10,6 +10,7 @@
 <div class="the-box">
   <legend>Sign Up</legend>
   <form id="RegisterForm" method="post" class="form-horizontal" action="/register"
+            enctype="multipart/form-data"
             data-bv-message="This value is not valid"
             data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
             data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
@@ -17,7 +18,7 @@
           <div class="form-group">
             <label class="col-lg-3 control-label">ID</label>
             <div class="col-lg-4">
-              <input type="text" class="form-control" name="userid" placeholder="User ID" />
+              <input type="text" class="form-control" name="id" placeholder="User ID" />
             </div>
           </div>
 
@@ -31,7 +32,7 @@
           <div class="form-group">
             <label class="col-lg-3 control-label">Username</label>
             <div class="col-lg-4">
-              <input type="text" class="form-control" name="username" />
+              <input type="text" class="form-control" name="name" />
             </div>
           </div>
 
@@ -67,6 +68,13 @@
               <input type="text" class="form-control" name="address" />
             </div>
           </div>
+
+          <div class="form-group">
+          <label class="col-lg-3 control-label">Input single file</label>
+            <div class="col-lg-4">
+              <input class="note-image-input" type="file" name="photo" accept="image/*">
+            </div><!-- /.input-group -->
+          </div><!-- /.form-group -->
 
           <div class="form-group">
             <div class="col-lg-9 col-lg-offset-3">
