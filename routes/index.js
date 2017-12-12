@@ -97,4 +97,14 @@ router.post('/login', function(req, res, next) {
   })
 });
 
+
+// GET : LOGOUT PAGE
+router.get('/logout', function(req, res, next) {
+  req.session.destroy(function(){
+    req.session;
+  });
+
+  res.redirect('/');
+});
+
 module.exports = router;
