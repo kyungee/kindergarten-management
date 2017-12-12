@@ -118,15 +118,61 @@ router.post('/add', upload.single('photo'), function(req, res, next) {
   })
 });
 
-router.get('/edit', function(req, res, next) {
+// GET : KIDS EDIT PAGE
+router.get('/edit/:idx', function(req, res, next) {
   var sendData = {}
-
   if(req.session)
     sendData.mem_name = req.session.name;
   else
     sendData.mem_name = null;
 
-  res.render('kids_edit', sendData);
+  var idx = req.params.idx;
+
+  var stmt = 'SELECT * FROM KINDERGARTENER WHERE idx="'+idx+'"';
+  connection.query(stmt, function (err, rows) {
+    console.log("rows : " + JSON.stringify(rows));
+    if (err){
+      console.error(err);
+      throw err;
+    } else{
+      sendData.kid = rows[0];
+
+      if(rows[0].gender == 0) {
+        sendData.male = 'checked';
+        sendData.female = '';
+      } else {
+        sendData.male = '';
+        sendData.female = 'checked';
+      }
+      res.render('kids_edit', sendData);
+    }
+  })
+});
+
+// POST : KIDS EDIT PAGE
+router.post('/edit/:idx', upload.single('photo'), function(req, res, next) {
+  var idx = req.params.idx;
+
+  var data = {
+    'class': req.body.class,
+    'name': req.body.name,
+    'gender': req.body.gender,
+    'birth_date': req.body.birthday,
+    'address': req.body.address,
+    'phone_num': req.body.phonenum,
+    'photo': req.file.filename
+  };
+
+  var stmt = 'UPDATE KINDERGARTENER SET ? WHERE idx="'+idx+'"';
+  connection.query(stmt, data, function (err, rows) {
+    console.log("rows : " + JSON.stringify(rows));
+    if (err){
+      console.error(err);
+      throw err;
+    } else{
+      res.redirect('/kids');
+    }
+  })
 });
 
 module.exports = router;

@@ -16,11 +16,11 @@
 <div class="the-box no-border property-list">
   <div class="media">
     <a class="pull-left" href="#fakelink">
-    <img alt="image" class="property-image img-responsive" src="/img/photo/medium/img.jpg"></a>
+    <img alt="image" class="property-image img-responsive" src="/uploads/<%= kid.photo %>"></a>
     <div class="clearfix visible-xs"></div>
     <div class="media-body" style="margin-left:230px;">
       <h4 class="media-heading">
-        <strong>병아리반</strong> <small class="pull-right">OOO선생님</small></h4><br/>
+        <strong><%= kid.class %></strong> <small class="pull-right">OOO선생님</small></h4><br/>
       <p class="hidden-xs">
         이름 : <%= kid.name %></br>
         생년월일 : <%= kid.birth_date %></br>
@@ -32,7 +32,7 @@
       <span class="small text-muted">
         <a href="/kids"><i class="fa fa-home">&nbsp;목록으로</i></a>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="/kids/edit"><i class="fa fa-edit">&nbsp;정보수정</i></a>
+        <a href="/kids/edit/<%= kid.idx %>"><i class="fa fa-edit">&nbsp;정보수정</i></a>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a href="/kids"><i class="fa fa-times-circle-o">&nbsp;원생삭제</i></a>
       </span>

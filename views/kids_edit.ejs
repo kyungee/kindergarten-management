@@ -16,7 +16,8 @@
 <div class="the-box no-border property-list">
   <div class="media">
     <br/><br/>
-    <form id="AddKindergardenerForm" method="post" class="form-horizontal" action="/login"
+    <form id="AddKindergardenerForm" method="post" class="form-horizontal" action="/kids/edit/<%= kid.idx %>"
+              enctype="multipart/form-data"
               data-bv-message="This value is not valid"
               data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
               data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
@@ -26,11 +27,11 @@
                 <label class="col-lg-3 control-label">Class</label>
                 <div class="col-lg-4">
                   <select class="form-control" name="class">
-                    <option value="">-- 담당 반 선택 --</option>
-                    <option value="1">병아리반</option>
-                    <option value="2">코끼리반</option>
-                    <option value="3">팬더반</option>
-                    <option value="4">펭귄반</option>
+                    <option value="<%= kid.class %>">-- 담당 반 선택 --</option>
+                    <option value="병아리반">병아리반</option>
+                    <option value="코끼리반">코끼리반</option>
+                    <option value="팬더반">팬더반</option>
+                    <option value="펭귄반">펭귄반</option>
                   </select>
                 </div>
               </div>
@@ -38,7 +39,7 @@
               <div class="form-group">
                 <label class="col-lg-3 control-label">Name</label>
                 <div class="col-lg-4">
-                  <input type="text" class="form-control" name="name" placeholder="원생이름" />
+                  <input type="text" class="form-control" name="name" placeholder="원생이름" value="<%= kid.name %>" />
                 </div>
               </div>
 
@@ -47,12 +48,12 @@
                 <div class="col-lg-4">
                   <div class="radio">
                     <label>
-                      <input type="radio" name="gender" value="0" /> Male
+                      <input type="radio" name="gender" value="0" <%= male %> /> Male
                     </label>
                   </div>
                   <div class="radio">
                     <label>
-                      <input type="radio" name="gender" value="1" /> Female
+                      <input type="radio" name="gender" value="1" <%= female %> /> Female
                     </label>
                   </div>
                 </div>
@@ -61,21 +62,24 @@
               <div class="form-group">
                 <label class="col-lg-3 control-label">Birthday</label>
                 <div class="col-lg-4">
-                  <input type="text" class="form-control datepicker" data-date-format="yy-mm-dd" placeholder="yy-mm-dd">
+                  <input type="text" class="form-control datepicker" name=birthday
+                         data-date-format="yy-mm-dd" placeholder="yy-mm-dd">
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-lg-3 control-label">Address</label>
                 <div class="col-lg-4">
-                  <input type="text" class="form-control" name="address" />
+                  <input type="text" class="form-control" name="address"
+                         value="<%= kid.address %>"/>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-lg-3 control-label">H.P</label>
                 <div class="col-lg-4">
-                  <input type="text" class="form-control" name="phonenum" />
+                  <input type="text" class="form-control" name="phonenum"
+                         value="<%= kid.phone_num %>"/>
                 </div>
               </div>
 
@@ -88,7 +92,7 @@
 
             <div class="form-group">
               <div class="col-lg-9 col-lg-offset-3">
-                <button type="submit" class="btn btn-primary">ADD</button>
+                <button type="submit" class="btn btn-primary">EDIT</button>
               </div>
             </div>
           </form>
