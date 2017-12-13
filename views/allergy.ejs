@@ -22,87 +22,73 @@
           <div class="panel-heading">
           <h3 class="panel-title"><i class="fa fa-check-square-o"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;알레르기 유발 음식 체크</h3>
           </div>
-          <ul class="list-group">
-            <li class="list-group-item">
-            <div class="checkbox">
-              <input type="checkbox" id="task-1">
-              <label for="task-1">땅콩</label>
-            </div><!-- /.checkbox -->
-            </li>
-            <li class="list-group-item">
-            <div class="checkbox">
-              <input type="checkbox" id="task-2" checked />
-              <label for="task-2">유제품</label>
-            </div><!-- /.checkbox -->
-            </li>
-            <li class="list-group-item">
-            <div class="checkbox">
-              <input type="checkbox" id="task-3" checked />
-              <label for="task-3">콩</label>
-            </div><!-- /.checkbox -->
-            </li>
-            <li class="list-group-item">
-            <div class="checkbox">
-              <input type="checkbox" id="task-4" checked />
-              <label for="task-4">계란</label>
-            </div><!-- /.checkbox -->
-            </li>
-            <li class="list-group-item">
-            <div class="checkbox">
-              <input type="checkbox" id="task-5">
-              <label for="task-5">해산물</label>
-            </div><!-- /.checkbox -->
-            </li>
-            <li class="list-group-item">
-            <div class="checkbox">
-              <input type="checkbox" id="task-6" checked />
-              <label for="task-6">오이</label>
-            </div><!-- /.checkbox -->
-            </li>
-          </ul>
-          <div class="panel-footer">
-          <p><button class="btn btn-danger btn-perspective btn-block">조회하기</button></p>
-          </div>
+          <form id="CheckForm" method="post" action="/health/allergy"
+                enctype="application/x-www-form-urlencoded">
+            <ul class="list-group">
+              <li class="list-group-item">
+              <div class="checkbox">
+                <input type="checkbox" name="allergy" id="task-1" value="견과류 알레르기" />
+                <label for="task-1">견과류</label>
+              </div><!-- /.checkbox -->
+              </li>
+              <li class="list-group-item">
+              <div class="checkbox">
+                <input type="checkbox" name="allergy" id="task-2" value="유제품 알레르기" />
+                <label for="task-2">유제품</label>
+              </div><!-- /.checkbox -->
+              </li>
+              <li class="list-group-item">
+              <div class="checkbox">
+                <input type="checkbox" name="allergy" id="task-3" value="콩 알레르기" />
+                <label for="task-3">콩</label>
+              </div><!-- /.checkbox -->
+              </li>
+              <li class="list-group-item">
+              <div class="checkbox">
+                <input type="checkbox" name="allergy" id="task-4" value="해산물 알레르기" />
+                <label for="task-4">해산물</label>
+              </div><!-- /.checkbox -->
+              </li>
+              <li class="list-group-item">
+              <div class="checkbox">
+                <input type="checkbox" name="allergy" id="task-5" value="갑각류 알레르기" />
+                <label for="task-5">갑각류</label>
+              </div><!-- /.checkbox -->
+              </li>
+              <li class="list-group-item">
+              <div class="checkbox">
+                <input type="checkbox" name="allergy" id="task-6" value="복숭아 알레르기" />
+                <label for="task-6">복숭아</label>
+              </div><!-- /.checkbox -->
+              </li>
+            </ul>
+            <div class="panel-footer">
+            <p><button type="submit" class="btn btn-danger btn-perspective btn-block">조회하기</button></p>
+            </div>
+          </form>
         </div><!-- /.panel panel-success -->
         <!-- END TASK LIST -->
       </div><!-- /.col-sm-4 -->
-
-      <div class="col-sm-4">
-        <!-- BEGIN USER CARD LONG -->
-        <div class="the-box no-border">
-          <div class="media user-card-sm">
-            <a class="pull-left" href="#fakelink">
-            <img class="media-object img-circle" src="/img/avatar/avatar.jpg" alt="Avatar">
-            </a>
-            <div class="media-body">
-            <h5 class="media-heading">병아리반&nbsp;&nbsp; 김경이</h5>
-            <p class="text-success">#오이</p>
+      <% for(var i=0; i < result.length; i++) { %>
+        <div class="col-sm-4">
+          <!-- BEGIN USER CARD LONG -->
+          <div class="the-box no-border">
+            <div class="media user-card-sm">
+              <a class="pull-left" href="#fakelink">
+              <img class="media-object img-circle" src="/uploads/<%= result[i].photo %>" alt="Avatar">
+              </a>
+              <div class="media-body">
+              <h5 class="media-heading"><%= result[i].class %>&nbsp;&nbsp; <%= result[i].name %></h5>
+              <p class="text-success">#<%= result[i].allergy_name %></p>
+              </div>
+              <div class="right-button">
+                <button class="btn btn-success" onclick="location.href='/kids/detail'"><i class="fa fa-search"></i></button>
+              </div><!-- /.right-button -->
             </div>
-            <div class="right-button">
-              <button class="btn btn-success" onclick="location.href='/kids/detail'"><i class="fa fa-search"></i></button>
-            </div><!-- /.right-button -->
-          </div>
-        </div><!-- /.the-box .no-border -->
-        <!-- BEGIN USER CARD LONG -->
-      </div><!-- /.col-sm-4 -->
-      <div class="col-sm-4">
-        <!-- BEGIN USER CARD LONG -->
-        <div class="the-box no-border">
-          <div class="media user-card-sm">
-            <a class="pull-left" href="#fakelink">
-            <img class="media-object img-circle" src="/img/avatar/avatar.jpg" alt="Avatar">
-            </a>
-            <div class="media-body">
-            <h5 class="media-heading">빨강반&nbsp;&nbsp; 강현준</h5>
-            <p class="text-success">#계란</p>
-            </div>
-            <div class="right-button">
-              <button class="btn btn-success" onclick="location.href='/kids/detail'"><i class="fa fa-search"></i></button>
-            </div><!-- /.right-button -->
-          </div>
-        </div><!-- /.the-box .no-border -->
-        <!-- BEGIN USER CARD LONG -->
-      </div><!-- /.col-sm-4 -->
+          </div><!-- /.the-box .no-border -->
+          <!-- BEGIN USER CARD LONG -->
+        </div><!-- /.col-sm-4 -->
+      <% } %>
     </div><!-- /.row -->
   </div><!-- /.the-box no-border -->
 </div>
