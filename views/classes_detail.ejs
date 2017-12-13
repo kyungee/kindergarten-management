@@ -19,14 +19,14 @@
     <!-- BEGIN PROFILE HEADING -->
     <div class="the-box transparent full no-margin profile-heading">
       <img src="/img/photo/wide/image-wide.jpg" class="bg-cover" alt="Image">
-      <img src="/img/avatar/avatar.jpg" class="avatar" alt="Avatar">
+      <img src="/uploads/<%= teacher.photo %>" class="avatar" alt="Avatar">
       <div class="profile-info">
-        <p class="user-name">병아리반</p>
-        <p class="text-muted">담임교사 : <a href="#fakelink">최동윤 선생님</a></p>
+        <p class="user-name"><%= class_info.name %></p>
+        <p class="text-muted">담임교사 : <a href="#fakelink"><%= teacher.name %> 선생님</a></p>
         <p class="text-muted">원생목록 :
-          <a href="/kids/detail">김경이</a>
-          <a href="/">김혜진</a>
-          <a href="/">조아진</a>
+          <% for(var i=0; i < kids.length; i++) { %>
+            <a href="/kids/detail/<%= kids.idx %>"><%= kids[i].name %></a>
+          <% } %>
         </p>
         <p class="right-button">
         </p>
