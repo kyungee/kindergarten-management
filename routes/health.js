@@ -35,7 +35,28 @@ router.get('/detail', function(req, res, next) {
   else
     sendData.mem_name = null;
 
-  res.render('health_detail', sendData);
+  var stmt = 'select k.class, count(*) as cnt from kindergartener k inner join diseasecare d on d.id = k.idx group by k.class;';
+  connection.query(stmt, function (err, rows) {
+    console.log("rows : " + JSON.stringify(rows));
+    if (err){
+      console.error(err);
+      throw err;
+    } else{
+      sendData.class_stats = rows;
+
+      var stmt = 'select k.class, k.name, k.birth_date, d.disease_name from kindergartener k inner join diseasecare d on d.id = k.idx;';
+      connection.query(stmt, function (err, rows) {
+        console.log("rows : " + JSON.stringify(rows));
+        if (err){
+          console.error(err);
+          throw err;
+        } else{
+          sendData.kids = rows;
+          res.render('health_detail', sendData);
+        }
+      })
+    }
+  })
 });
 
 // GET : ALLERGY PAGE

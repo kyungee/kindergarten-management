@@ -16,29 +16,33 @@
 <!-- Begin addresses and blockquote -->
 <div class="row">
   <div class="col-sm-6">
-    <div class="the-box">
-      <h4 class="small-title">총 건강 이상 원생</h4>
-      <address>
-        <strong>병아리반</strong><br>
-        231343명<br>
+    <div class="the-box"><br/>
+      <h4 class="small-title" style="margin-left:30px;">총 건강 이상 원생</h4>
+      <div class="row">
+      <% for(var i=0; i < class_stats.length; i++) { %>
+        <div style="float:left; margin-left:10%;">
+        <span class="chart easy-pie-chart-1" data-percent="86">
+          <span class="percent"></span>
+        </span>
+      <address style="text-align:center;">
+        <strong><%= class_stats[i].class %></strong><br>
+        <%= class_stats[i].cnt %>명<br>
       </address>
-
-      <address>
-        <strong>Full Name</strong><br>
-        <a href="mailto:#">first.last@example.com</a>
-      </address>
+    </div>
+      <% } %>
+    </div>
     </div><!-- /.the-box -->
   </div><!-- /.col-sm-6 -->
   <div class="col-sm-6">
     <div class="the-box">
+      <% for(var i=0; i < kids.length; i++) { %>
       <blockquote>
-        <p>병아리반 | 김경이 | 961018 : 피로누적</p>
-        <small>과도한 음주를 자제해주세요.</small>
+        <p><%= kids[i].class %>&nbsp; | &nbsp;<%= kids[i].name %> | &nbsp;<%= kids[i].disease_name %></p>
+        <% if(kids[i].disease_name == '천식') { %>
+          <small style="margin-left:20px;"> &nbsp;&nbsp;과도한 음주를 자제해주세요.</small>
+        <% }%>
       </blockquote>
-      <blockquote>
-        <p>여우반 | 김혜진 | 960823 : 우울증</p>
-        <small>음주를 권합니다.</small>
-      </blockquote>
+      <% } %>
     </div><!-- /.the-box -->
   </div><!-- /.col-sm-6 -->
 </div><!-- /.row -->
