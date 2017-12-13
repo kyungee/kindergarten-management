@@ -119,6 +119,29 @@ router.post('/add', upload.single('photo'), function(req, res, next) {
   })
 });
 
+// POST : KIDS SEARCH PAGE
+router.post('/search', function(req, res, next) {
+  var sendData = {}
+  if(req.session)
+    sendData.mem_name = req.session.name;
+  else
+    sendData.mem_name = null;
+
+  var search = req.body.search;
+
+  var stmt = 'SELECT * FROM KINDERGARTENER WHERE name like "%'+search+'%"';
+  connection.query(stmt, function (err, rows) {
+    console.log("rows : " + JSON.stringify(rows));
+    if (err){
+      console.error(err);
+      throw err;
+    } else{
+      sendData.kids = rows;
+      res.render('kids', sendData);
+    }
+  })
+});
+
 // GET : KIDS EDIT PAGE
 router.get('/edit/:idx', function(req, res, next) {
   var sendData = {}

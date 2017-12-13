@@ -52,7 +52,18 @@ router.get('/detail', function(req, res, next) {
           throw err;
         } else{
           sendData.kids = rows;
-          res.render('health_detail', sendData);
+
+          var stmt = 'select b.class, round((b.cnt/a.cnt)*100, 2) as cnt from ( select class, count(*) cnt from kindergartener group by class) a, (select k.class, count(*) cnt from kindergartener k inner join diseasecare d on d.id = k.idx group by k.class) b where a.class = b.class;';
+          connection.query(stmt, function (err, rows) {
+            console.log("rows : " + JSON.stringify(rows));
+            if (err){
+              console.error(err);
+              throw err;
+            } else{
+              sendData.graph = rows;
+              res.render('health_detail', sendData);
+            }
+          })
         }
       })
     }
@@ -91,7 +102,7 @@ router.post('/allergy', function(req, res, next) {
       query += ' or allergy_name="'+ data[i] +'"';
     }
 
-    var stmt = 'select k.class, k.name, k.photo, a.allergy_name from allergycare a, kindergartener k where a.id=k.idx and ('+query+');';
+    var stmt = 'select k.idx, k.class, k.name, k.photo, a.allergy_name from allergycare a, kindergartener k where a.id=k.idx and ('+query+');';
     connection.query(stmt, function (err, rows) {
       console.log("rows : " + JSON.stringify(rows));
       if (err){

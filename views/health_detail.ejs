@@ -21,7 +21,7 @@
       <div class="row">
       <% for(var i=0; i < class_stats.length; i++) { %>
         <div style="float:left; margin-left:10%;">
-        <span class="chart easy-pie-chart-1" data-percent="86">
+        <span class="chart easy-pie-chart-1" data-percent="<%= graph[i].cnt %>">
           <span class="percent"></span>
         </span>
       <address style="text-align:center;">
@@ -39,7 +39,13 @@
       <blockquote>
         <p><%= kids[i].class %>&nbsp; | &nbsp;<%= kids[i].name %> | &nbsp;<%= kids[i].disease_name %></p>
         <% if(kids[i].disease_name == '천식') { %>
-          <small style="margin-left:20px;"> &nbsp;&nbsp;과도한 음주를 자제해주세요.</small>
+          <small style="margin-left:20px;"> &nbsp;&nbsp;호흡기를 챙겨주세요.</small>
+        <% } else if(kids[i].disease_name == '감기') { %>
+          <small style="margin-left:20px;"> &nbsp;&nbsp;식사 후 약을 먹여주세요.</small>
+        <% } else if(kids[i].disease_name == '아토피') { %>
+          <small style="margin-left:20px;"> &nbsp;&nbsp;피부를 긁지 않도록 주의해주세요.</small>
+        <% } else if(kids[i].disease_name == '화상') { %>
+          <small style="margin-left:20px;"> &nbsp;&nbsp;화상 부위에 자극이 가지 않도록 해주세요.</small>
         <% }%>
       </blockquote>
       <% } %>
