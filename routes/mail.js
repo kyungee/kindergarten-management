@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
   else
     sendData.mem_name = null;
 
-  res.render('stats', sendData);
+  res.render('mail', sendData);
 });
 
 module.exports = router;
