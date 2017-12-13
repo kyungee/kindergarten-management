@@ -5,10 +5,54 @@
 <h1 class="page-heading">유치원생 관리 프로그램 <small>Database 디빙디밍조</small></h1>
 <!-- End page heading -->
 
-<!-- Begin breadcrumb -->
-<ol class="breadcrumb default square rsaquo sm">
-  <li><a href="/"><i class="fa fa-home"></i></a></li>
-  <li><a href="/kids">유치원생 관리</a></li>
-  <li class="active">유치원생 리스트</li>
-</ol>
-<!-- End breadcrumb -->
+<!-- BEGIN MAIL APPS NEW MAIL -->
+<div class="mail-apps-wrap">
+  <div class="the-box bg-success no-border no-margin heading">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1><i class="fa fa-envelope icon-lg icon-circle icon-bordered"></i> 가정통신문</h1>
+      </div><!-- /.col-sm-6 -->
+    </div><!-- /.row -->
+  </div>
+
+  <div class="the-box no-margin">
+    <form id="MailForm" method="post" class="form-horizontal" action="/mail">
+      <div class="row" style="margin-left:50px;">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>To</label>
+            <select name="to" data-placeholder="Select kindergartener..." class="form-control chosen-select" multiple tabindex="4">
+              <% for(var i=0; i < kids.length; i++) { %>
+                <option value="<%= kids[i].email %>"><%= kids[i].name %></option>
+              <% } %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Attachment</label>
+            <div class="input-group">
+              <input type="text" class="form-control" readonly>
+              <span class="input-group-btn">
+                <span class="btn btn-primary btn-file">
+                  Browse files<input type="file" multiple name="">
+                </span>
+              </span>
+            </div><!-- /.input-group -->
+          </div>
+        </div><!-- /.col-sm-4 -->
+        <div class="col-sm-6" style="margin-left:20px;">
+          <div class="form-group">
+            <label>Mail subject</label>
+            <input type="text" name="title" class="form-control input-lg" placeholder="Title">
+          </div><!-- /.input-group -->
+          <div class="form-group">
+            <textarea name="contents" class="summernote-sm"></textarea>
+          </div><!-- /.input-group -->
+          <div class="form-group">
+            <button type="submit" class="btn btn-success"><i class="fa fa-rocket"></i> Send mail</button>
+          </div>
+        </div><!-- /.col-sm-8 -->
+      </div><!-- /.row -->
+    </form>
+  </div><!-- /.the-box -->
+</div><!-- /.mail-apps-wrap -->
+<!-- END MAIL APPS NEW MAIL -->
