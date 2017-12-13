@@ -53,7 +53,6 @@ router.get('/detail/:idx', function(req, res, next) {
           throw err;
         } else{
           sendData.teacher = rows[0];
-          console.log(sendData.class_info.name);
           var stmt = 'select * from kindergartener where class="'+sendData.class_info.name+'"';
           connection.query(stmt, function (err, rows) {
             console.log("rows : " + JSON.stringify(rows));

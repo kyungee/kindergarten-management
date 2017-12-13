@@ -104,6 +104,7 @@ router.post('/add', upload.single('photo'), function(req, res, next) {
     'birth_date': req.body.birthday,
     'address': req.body.address,
     'phone_num': req.body.phonenum,
+    'email': req.body.email,
     'photo': req.file.filename
   };
 
@@ -160,6 +161,7 @@ router.post('/edit/:idx', upload.single('photo'), function(req, res, next) {
     'birth_date': req.body.birthday,
     'address': req.body.address,
     'phone_num': req.body.phonenum,
+    'email': req.body.email,
     'photo': req.file.filename
   };
 
